@@ -1,0 +1,163 @@
+html{
+  scroll-behavior: smooth;
+}
+body{
+  scroll-snap-type: y proximity;
+}
+
+:root {
+    --color-primary: #0073ff;
+    --color-white: #e9e9e9;
+    --color-black: #141d28;
+    --color-black-1: #212b38;
+  }
+  
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  
+}
+
+.logo {
+  color: var(--color-white);
+  font-size: 30px;
+}
+
+.logo span {
+  color: var(--color-primary);
+}
+
+.menu-bar {
+  background-color: var(--color-black);
+  height: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+
+  position: relative;
+}
+
+.menu-bar ul {
+  list-style: none;
+  display: flex;
+}
+
+.menu-bar ul li {
+  padding: 10px 30px;
+  position: relative;
+}
+
+.menu-bar ul li a {
+  font-size: 20px;
+  color: var(--color-white);
+  text-decoration: none;
+
+  transition: all 0.3s;
+}
+
+.menu-bar ul li a:hover {
+  color: var(--color-primary);
+}
+
+.fas {
+  float: right;
+  margin-left: 10px;
+  padding-top: 3px;
+}
+
+
+#prehrana {
+  position: relative;
+  width: 100%;
+  height: 580;
+  background-image: url('Slike/food2.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  scroll-snap-align: center;
+}
+
+#prehrana a{
+  position: absolute;
+  text-align: justify;
+  width: 580px;
+  height:300px;
+  color: #ffffff;
+  font-family: 'Vollkorn', serif;
+  font-size: 2.4rem;
+  line-height: 1.0625em;
+  font-weight: 950;
+  margin-left: 45px; 
+  transform: translate(120%, 20%);
+  text-decoration: none;
+  
+
+}
+
+#tijelo{
+position: relative;
+width: 100%;
+height: 660;
+background-image: url('Slike/fitness2.jpg');
+background-size: cover;
+background-repeat: no-repeat;
+scroll-snap-align: center;
+
+} 
+
+
+#tijelo a{
+  position: absolute;
+  width: 580px;
+  height:300px;
+  color: #ffffff;
+  font-family: 'Vollkorn', serif;
+  font-size: 2.4rem;
+  line-height: 1.0625em;
+  font-weight: 950;
+  margin-left: 45px; 
+  transform: translate(10%, 30%);
+  text-decoration: none;
+  text-align: justify;
+
+}
+
+#zdravlje{
+  position: relative;
+  width: 100%;
+  height: 660px;
+  background-image: url('Slike/zdravlje.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  scroll-snap-align: center;
+  
+  } 
+  
+  
+  #zdravlje a{
+    position: absolute;
+    width: 580px;
+    height:300px;
+    color: #ffffff;
+    font-family: 'Vollkorn', serif;
+    font-size: 2.4rem;
+    line-height: 1.0625em;
+    font-weight: 950;
+    margin-left: 45px; 
+    transform: translate(120%, 90%);
+    text-decoration: none;
+    text-align: justify;
+
+  }
+  
+
+ 
+
+ 
+
