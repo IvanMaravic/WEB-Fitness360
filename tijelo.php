@@ -1,3 +1,4 @@
+
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -6,18 +7,12 @@
     <link rel="stylesheet" href="tijelo.css" />
     <title>dropdown Menu</title>
   </head>
+  <header>
+        <?php
+        include('header.php'); 
+        ?>
+    </header> 
   <body>
-    <div class="menu-bar">
-      <h1 class="logo">Fitness<span>360</span></h1>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        </li>
-        <li><a href="login.html">Log in</a>
-        </li>
-        <li><a href="register.html">Register</a></li>
-      </ul>
-    </div>
-
     <div id="tijelo">
         <p1>Snažan um nalazi se u snažnom tijelu.</p1>
         <p2>Napravi najbolju verziju sebe.</p2>
@@ -103,7 +98,7 @@
         </div>  
     </div>
     
-    <p id="quote1">"True yoga is not about the shape of your body, but the shape of your life.<br>
+    <p id="quote">"True yoga is not about the shape of your body, but the shape of your life.<br>
         Yoga is not to be performed; yoga is to be lived.<br>
         Yoga doesn't care about what you have been; yoga cares about the person you are becoming.
         <br>Yoga is designed for a vast and profound purpose, and for it to be truly called yoga, 
@@ -164,7 +159,7 @@
         </div>   
     </div>
 
-    <p id="quote2">“I hated every minute of training, but I said, 
+    <p id="quote">“I hated every minute of training, but I said, 
         ‘Don’t quit. Suffer now and live the rest of your life as a champion.” 
         <br><br>– Muhammad Ali"
     </p>
@@ -230,32 +225,49 @@
             ili ljubitelj ekstremnih sportova, uvijek postoji nešto što će vas oduševiti.
         </p>
 
-        <p id="quote3">“The five S’s of sports training are:<br>
+        <p id="quote">“The five S’s of sports training are:<br>
             stamina, speed, strength, skill, and spirit; but the greatest of these is spirit.” 
             <br><br>–Ken Doherty
         </p>
            
     </div>
-    
+    <div id="zvjezdice">
+        <h2>Ocjenite ovaj članak</h2>
+        <div class="stars" id="stars">
+            <span data-value="1">★</span>
+            <span data-value="2">★</span>
+            <span data-value="3">★</span>
+            <span data-value="4">★</span>
+            <span data-value="5">★</span>
+        </div>
+        <p>Vaša ocijena: <span id="selectedRating">0</span> zvjezdice</p>
+    </div>
+
+
+
+
+
     <footer class="container8">
-        <div class="container9">
-            <div>
+        <div class="container9"> 
             <h1 class="logoF">Fitness<span>360</span></h1>
+        </div>
+        
+        <div class="container9">       
             <p>Adresa: Slavonska ulica 25<br>
                 Poštanski broj: 31000<br>
                 Grad: Osijek<br>
                 Država: Hrvatska</p>
         </div>
-        <p style="margin-top: 60px;">Naziv : Fitness360<br>
+        <div class="container9">
+            <p>
             OIB (Osobni identifikacijski broj): 12345678901<br>
             IBAN (Međunarodni bankovni račun): HR1234567890123456789<br>
-            SWIFT/BIC kod: ABCDHR22XXX<br>
-        </p>
+            SWIFT/BIC kod: ABCDHR22XXX<br></p>
         </div>
-        <div class="container9" style="margin-bottom: 30px; margin-right: 50px">
+
+        <div class="container9">
             <p>Broj telefona: +385 31 123 456<br>
                 Broj mobitela: +385 91 987 654
-
             </p>
             <p>
                 fitness360_info@gmail.com<br>
@@ -266,7 +278,37 @@
     </footer>
 
     
+    <script>
+    const starsContainer = document.getElementById('stars');
+    const selectedRating = document.getElementById('selectedRating');
 
+    starsContainer.addEventListener('click', event => {
+        const clickedStar = event.target;
+        if (clickedStar.tagName === 'SPAN') {
+            const rating = clickedStar.getAttribute('data-value');
+            selectedRating.textContent = rating;
 
+            const stars = starsContainer.querySelectorAll('span');
+            stars.forEach(star => {
+                if (star.getAttribute('data-value') <= rating) {
+                    star.style.color = 'gold';
+                } else {
+                    star.style.color = 'white';
+                }
+            });
+
+            // Send the selected rating to the server using AJAX
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'rate.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log(xhr.responseText);
+                }
+            };
+            xhr.send(`selectedRating=${rating}`);
+        }
+    });
+</script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+
 <html>
     <head>
         <meta charset="UTF-8" />
@@ -5,18 +6,13 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
         <link rel="stylesheet" href="zdravlje.css" />
         <title>dropdown Menu</title>
-</head>
+    </head>
+    <header>
+        <?php
+        include('header.php'); 
+        ?>
+    </header>   
     <body>
-        <div class="menu-bar">
-            <h1 class="logo">Fitness<span>360</span></h1>
-            <ul>
-              <li><a href="index.html">Home</a></li>
-              </li>
-              <li><a href="login.html">Log in</a>
-              </li>
-              <li><a href="register.html">Register</a></li>
-            </ul>
-    </div>
     <div id="zdravlje">
         <div class="container">
             <h1>Zdrav život</h1>
@@ -252,41 +248,83 @@
                 </div> 
             </div>
     </div>
-  
-    
+
+    <div id="zvjezdice">
+        <h2>Ocjenite ovaj članak</h2>
+        <div class="stars" id="stars">
+            <span data-value="1">★</span>
+            <span data-value="2">★</span>
+            <span data-value="3">★</span>
+            <span data-value="4">★</span>
+            <span data-value="5">★</span>
+        </div>
+        <p>Vaša ocijena: <span id="selectedRating">0</span> zvjezdice</p>
+    </div>
+
+
+
     <footer class="container12">
-        <div class="container13">
+        <div class="container13"> 
             <h1 class="logoF">Fitness<span>360</span></h1>
-            <p>Kontaktirajte nas<br>email: fitness360@gmail.com<br>tel: +385 456 7890</p>
         </div>
         
-        <p>asdasdas<br>oidjsoifhsdlfj<br>jasifhasdjlhfaj<br>nioasfjf<br>jifjasilfjsa</p>
-        <p>asdasdfsdfs<br>jkfasjdjasihou<br>iojfsdhaslhdj<br>isfhslfhsdjlh<br>idnsfihsdlvbuh<br>isdfjlksdjf</p>
-    </footer>
-    
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="contact-info">
-                <h3>Kontaktirajte nas</h3>
-                <p>Email: info@fitness360.com</p>
-                <p>Telefon: +123 456 7890</p>
-            </div>
-            <div class="app-download">
-                <h3>Preuzmite našu aplikaciju</h3>
-                <p>Iskoristite našu mobilnu aplikaciju za praćenje vašeg napretka i vježbanje bilo gdje i bilo kada!</p>
-                <a href="#" class="download-link">Preuzmite ovdje</a>
-            </div>
+        <div class="container13">       
+            <p>Adresa: Slavonska ulica 25<br>
+                Poštanski broj: 31000<br>
+                Grad: Osijek<br>
+                Država: Hrvatska</p>
         </div>
-        <div class="social-links">
-            <a href="#" class="social-icon"><img src="facebook-icon.png" alt="Facebook"></a>
-            <a href="#" class="social-icon"><img src="twitter-icon.png" alt="Twitter"></a>
-            <a href="#" class="social-icon"><img src="instagram-icon.png" alt="Instagram"></a>
+        <div class="container13">
+            <p>
+            OIB (Osobni identifikacijski broj): 12345678901<br>
+            IBAN (Međunarodni bankovni račun): HR1234567890123456789<br>
+            SWIFT/BIC kod: ABCDHR22XXX<br></p>
         </div>
-        <p class="copyright">&copy; 2023 Fitness360. Sva prava zadržana.</p>
+
+        <div class="container13">
+            <p>Broj telefona: +385 31 123 456<br>
+                Broj mobitela: +385 91 987 654
+            </p>
+            <p>
+                fitness360_info@gmail.com<br>
+                © 2023 Fitness360 
+            </p>
+        </div>
+                
     </footer>
-</div>
+
     
+    <script>
+    const starsContainer = document.getElementById('stars');
+    const selectedRating = document.getElementById('selectedRating');
 
+    starsContainer.addEventListener('click', event => {
+        const clickedStar = event.target;
+        if (clickedStar.tagName === 'SPAN') {
+            const rating = clickedStar.getAttribute('data-value');
+            selectedRating.textContent = rating;
 
+            const stars = starsContainer.querySelectorAll('span');
+            stars.forEach(star => {
+                if (star.getAttribute('data-value') <= rating) {
+                    star.style.color = 'gold';
+                } else {
+                    star.style.color = 'white';
+                }
+            });
+
+            // Send the selected rating to the server using AJAX
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'rate.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log(xhr.responseText); // You can handle the response here
+                }
+            };
+            xhr.send(`selectedRating=${rating}`);
+        }
+    });
+</script>
 </body>
 </html>

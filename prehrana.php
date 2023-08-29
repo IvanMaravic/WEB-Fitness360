@@ -7,24 +7,17 @@
 
 </head>
 
+<header>
+  <?php
+  include('header.php'); 
+  ?>
+</header> 
+
 <body>
-  <div id="menu">
-    <div class="menu-bar">
-        <h1 class="logo">Fitness<span>360</span></h1>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="login.html">Log in</a>
-          </li>
-          <li><a href="register.html">Register</a></li>
-        </ul>
-      </div>
+  <div id="prehrana">
+      <p>Otkrij moć zdrave prehrane i osjećaj se fantastično svaki dan. 
+      </p>
     </div>
-    
-    
-    <div id="prehrana">
-        <p>Otkrij moć zdrave prehrane i osjećaj se fantastično svaki dan. 
-        </p>
-      </div>
 
 
 
@@ -224,19 +217,84 @@
           
         </div>
 
-        <footer class="container8">
-          <div class="container9">
-              <h1 class="logoF">Fitness<span>360</span></h1>
-              <p>sdaasfasd<br>onosdiofjesfi<br>fjesiofjsd<br>ifjsioj</p>
-          </div>
-          
-          <p>asdasdas<br>oidjsoifhsdlfj<br>jasifhasdjlhfaj<br>nioasfjf<br>jifjasilfjsa</p>
-          <p>asdasdfsdfs<br>jkfasjdjasihou<br>iojfsdhaslhdj<br>isfhslfhsdjlh<br>idnsfihsdlvbuh<br>isdfjlksdjf</p>
-      </footer>
-</div>
+        <div id="zvjezdice">
+        <h2>Ocjenite ovaj članak</h2>
+        <div class="stars" id="stars">
+            <span data-value="1">★</span>
+            <span data-value="2">★</span>
+            <span data-value="3">★</span>
+            <span data-value="4">★</span>
+            <span data-value="5">★</span>
+        </div>
+        <p>Vaša ocijena: <span id="selectedRating">0</span> zvjezdice</p>
+    </div>
 
 
+
+
+
+    <footer class="container3">
+        <div class="container4"> 
+            <h1 class="logoF">Fitness<span>360</span></h1>
+        </div>
+        
+        <div class="container4">       
+            <p>Adresa: Slavonska ulica 25<br>
+                Poštanski broj: 31000<br>
+                Grad: Osijek<br>
+                Država: Hrvatska</p>
+        </div>
+        <div class="container4">
+            <p>
+            OIB (Osobni identifikacijski broj): 12345678901<br>
+            IBAN (Međunarodni bankovni račun): HR1234567890123456789<br>
+            SWIFT/BIC kod: ABCDHR22XXX<br></p>
+        </div>
+
+        <div class="container4">
+            <p>Broj telefona: +385 31 123 456<br>
+                Broj mobitela: +385 91 987 654
+            </p>
+            <p>
+                fitness360_info@gmail.com<br>
+                © 2023 Fitness360 
+            </p>
+        </div>
+                
+    </footer>
+
     
-    
+    <script>
+    const starsContainer = document.getElementById('stars');
+    const selectedRating = document.getElementById('selectedRating');
+
+    starsContainer.addEventListener('click', event => {
+        const clickedStar = event.target;
+        if (clickedStar.tagName === 'SPAN') {
+            const rating = clickedStar.getAttribute('data-value');
+            selectedRating.textContent = rating;
+
+            const stars = starsContainer.querySelectorAll('span');
+            stars.forEach(star => {
+                if (star.getAttribute('data-value') <= rating) {
+                    star.style.color = 'gold';
+                } else {
+                    star.style.color = 'white';
+                }
+            });
+
+            // Send the selected rating to the server using AJAX
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'rate.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log(xhr.responseText); // You can handle the response here
+                }
+            };
+            xhr.send(`selectedRating=${rating}`);
+        }
+    });
+</script>
 </body>
 </html>

@@ -179,29 +179,40 @@ tr {
     width:120%;
 }
 
-.container8{
-    margin-top: 30px;
-    display: flex;
-    flex-direction: row;
-    height: 300px;
-    width: auto;
-    background-color: rgba(0, 0, 0, 0.904);
-    justify-content: space-between;
-  }
-
-.container8 p{
-    color: white;
-    font-size: 110%;
-    text-align: center;
-    margin-left: 60px;
-    margin-right: 60px;
-    margin-top: 60px;
+footer{
+    background-color: rgb(0, 0, 0);
   }
   
-  .container9{
+   .container3{
+    display: flex;
+    flex-direction: row;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  
+  .container4{
     display: flex;
     flex-direction: column;
+    margin-left: 70px;
+    margin-right: 25px;
+  } 
+  
+  footer div{
+    font-family: 'Volcorn', serif;
+    line-height: 1.5rem;
+    color: white;
+    margin-top: 20px;
+    margin-left: 30px;
   }
+  
+  footer p{
+    font-family: 'Volcorn', serif;
+    line-height: 1.5rem;
+    color: white;
+    margin-top: 20px;
+    margin-left: 20px; 
+  } 
+  
   .logoF {
     color: var(--color-white);
     margin-left: 60px;
@@ -210,4 +221,15 @@ tr {
   
   .logoF span {
     color: var(--color-primary);
+  }
+  
+  a{
+    text-decoration: none;
+    color: black;
+  }
+  
+  #zvjezdice{
+    text-align:center;
+    margin-bottom: 30px;
+    margin-top: 50px;
   }
